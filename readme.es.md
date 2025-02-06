@@ -1,3 +1,7 @@
+## Captura de Pantalla
+
+![Resultado Final](assets/resultadoFinal.png)
+
 # Pokedex API Proyecto
 
 ## Descripción del Proyecto
@@ -16,10 +20,6 @@ Este proyecto es una aplicación de Pokedex que utiliza la API de Pokémon para 
 * Lenguaje de programación: HTML, CSS, JAVASCRIPT
 * API: Pokeapi
 
-## Captura de Pantalla
-
-![Resultado Final](assets/resultadoFinal.png)
-
 ## Instalación y Uso
 
 1. Clona el repositorio en tu máquina local.
@@ -36,7 +36,7 @@ Si deseas contribuir a este proyecto, por favor sigue los siguientes pasos:
 
 ## Licencia
 
-Este proyecto está bajo la licencia [Licencia utilizada]. Por favor, lee la licencia antes de utilizar o distribuir el código.
+Este proyecto está bajo la licencia MIT License. Por favor, lee la licencia antes de utilizar o distribuir el código.
 
 ## Agradecimientos
 
