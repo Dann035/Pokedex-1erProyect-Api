@@ -1,34 +1,30 @@
+const listPokemon = document.querySelector("#pokemon-list");
+const URL = "https://pokeapi.co/api/v2/pokemon/";
+const typeURL = "https://pokeapi.co/api/v2/type/";
 
-
-const listPokemon = document.querySelector('#pokemon-list');
-const URL = 'https://pokeapi.co/api/v2/pokemon/';
-const typeURL = 'https://pokeapi.co/api/v2/type/';
-
-for(let i = 1; i <= 151; i++) {
-    fetch(URL + i)
-        .then((res) => res.json())
-        .then(data => showPokemon(data));
+async function fetchPokemon() {
+    const batchSize = 100;
+    for (let i = 1; i <= 1304; i += batchSize) {
+        const promises = [];
+        for (let j = i; j < i + batchSize && j <= 1304; j++) {
+            promises.push(fetch(URL + j).then(res => res.json()));
+        }
+        const batchData = await Promise.all(promises);
+        batchData.forEach((data) => showPokemon(data));
+    }
 }
 
 function showPokemon(data) {
-    const poke = document.createElement('div');
-    const typeData = data.types;
-    const types = [];
+    const poke = document.createElement("div");
+    const types = data.types.map((typeInfo) => typeInfo.type.name);
 
-
-    for(e in typeData) {
-        const type = typeData[e].type.name;
-        types.push(type);
-    }
-    
-
-    
-    
-    poke.classList.add('pokemon');
+    poke.classList.add("pokemon");
     poke.innerHTML = `
         <p class="pokemon-id-back">${data.id}</p>
         <div class="pokemon-image">
-            <img src=${data.sprites.other['official-artwork'].front_default} alt="Pikachu">
+            <img src=${
+                data.sprites.other["official-artwork"].front_default
+            } alt="${data.name}">
         </div>
         <div class="pokemon-info">
             <div class="nombre-id-contenedor">
@@ -36,7 +32,7 @@ function showPokemon(data) {
                 <h2 class="pokemon-name">${data.name}</h2>
             </div>
             <div class="type-pokemon">
-                ${types.map(type => `<p class = "${type} type">${type}</p>`).join('')}
+                ${types.map((type) => `<p class = "${type} type">${type}</p>`).join("")}
             </div>
             <div class="stats-pokemon">
                 <p class="stat">${data.height}m</p>
@@ -44,6 +40,8 @@ function showPokemon(data) {
             </div>
         </div>
     `;
-    
+
     listPokemon.appendChild(poke);
 }
+
+fetchPokemon();
